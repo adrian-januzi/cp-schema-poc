@@ -1,0 +1,21 @@
+{
+  "name": "pg-source-connector-schema-exists",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "connection.url": "jdbc:postgresql://postgres:5432/postgresdb",
+    "connection.user": "luigi",
+    "connection.password": "password",
+    "table.whitelist": "person",
+    "mode": "incrementing",
+    "incrementing.column.name": "id",
+    "topic.prefix": "test",
+    "poll.interval.ms": "5000",
+    "numeric.mapping": "best_fit",
+    
+    "transforms":"createKey,extractInt",
+    "transforms.createKey.type":"org.apache.kafka.connect.transforms.ValueToKey",
+    "transforms.createKey.fields":"id",
+    "transforms.extractInt.type":"org.apache.kafka.connect.transforms.ExtractField$Key",
+    "transforms.extractInt.field":"id"
+  }
+}
