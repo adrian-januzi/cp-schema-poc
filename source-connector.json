@@ -1,5 +1,5 @@
 {
-    "name": "pg-source-connector-serialiser",
+    "name": "pg-source-connector-source",
     "config": {
       "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
       "connection.url": "jdbc:postgresql://postgres:5432/postgresdb",
@@ -8,11 +8,11 @@
       "table.whitelist": "person",
       "mode": "incrementing",
       "incrementing.column.name": "id",
-      "topic.prefix": "blurg",
+      "topic.prefix": "test",
       "poll.interval.ms": "5000",
       "numeric.mapping": "best_fit",
 
-      "key.converter": "io.confluent.kafka.serializers.KafkaAvroSerializer",
+      "key.converter": "io.confluent.connect.avro.AvroConverter",
       "key.converter.schema.registry.url": "http://schema-registry:8081",
       "key.converter.enhanced.avro.schema.support": true,
 
